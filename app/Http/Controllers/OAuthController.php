@@ -105,6 +105,16 @@ class OAuthController extends Controller
             return $object;
         }
 
+        if ($request->event == "app.installed") {
+
+            $object['status'] = true;
+            $object['message'] = "App Name Info";
+            $object['data'] = $request->data['app_name'];
+
+            Log::Info($object);
+            return $object;
+        }
+
         if ($request->event == "order.created") {
 
             $payload = $request;
